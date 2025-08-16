@@ -2,7 +2,9 @@ const CONFIG = {
   channelName: "Your Channel Name",
   channelId: "UC_REPLACE_WITH_YOUR_CHANNEL_ID",
   featuredPlaylistUrl: "https://www.youtube.com/playlist?list=REPLACE_PLAYLIST_ID",
+  specificPlaylistUrl: "https://www.youtube.com/playlist?list=REPLACE_WITH_YOUR_SPECIFIC_PLAYLIST_ID",
   contactEmail: "you@example.com",
+  aboutMe: "I'm a passionate music creator producing original tracks, remixes, and audio experiences. My sound blends electronic, ambient, and experimental elements to create unique sonic journeys. Explore my latest releases, curated playlists, and behind-the-scenes sounds.",
   socialLinks: {
     youtube: "https://www.youtube.com/",
     instagram: "https://www.instagram.com/",
@@ -103,26 +105,48 @@ document.addEventListener("DOMContentLoaded", () => {
     contactLink.textContent = CONFIG.contactEmail;
   }
 
-  // Social links + CTA
+  // Setup players
+  if (!isPlaceholderChannelId(CONFIG.channelId)) {
+    const uploadsId = getUploadsPlaylistId(CONFIG.channelId);
+    setIframeSrc("uploadsPlayer", uploadsId);
+  } else {
+    setIframeSrc("uploadsPlayer", null);
+  }
+
+  if (!isPlaceholderPlaylistUrl(CONFIG.featuredPlaylistUrl)) {
+    const featuredId = extractPlaylistId(CONFIG.featuredPlaylistUrl);
+    setIframeSrc("featuredPlaylistPlayer", featuredId);
+  } else {
+    setIframeSrc("featuredPlaylistPlayer", null);
+  }
+
+  if (!isPlaceholderPlaylistUrl(CONFIG.specificPlaylistUrl)) {
+    const specificId = extractPlaylistId(CONFIG.specificPlaylistUrl);
+    setIframeSrc("specificPlaylistPlayer", specificId);
+  } else {
+    setIframeSrc("specificPlaylistPlayer", null);
+  }
+
+  // Setup social links
   setLink("ytHeader", CONFIG.socialLinks.youtube);
   setLink("igHeader", CONFIG.socialLinks.instagram);
   setLink("fbHeader", CONFIG.socialLinks.facebook);
   setLink("ytConnect", CONFIG.socialLinks.youtube);
   setLink("igConnect", CONFIG.socialLinks.instagram);
   setLink("fbConnect", CONFIG.socialLinks.facebook);
-  setLink("subscribeCta", CONFIG.socialLinks.youtube);
 
-  // Latest uploads via uploads playlist (UU + channelId without UC)
-  const uploadsPlaylistId = isPlaceholderChannelId(CONFIG.channelId)
-    ? null
-    : getUploadsPlaylistId(CONFIG.channelId);
-  setIframeSrc("uploadsPlayer", uploadsPlaylistId);
+  // Setup About Me text
+  const aboutMeText = document.getElementById("aboutMeText");
+  if (aboutMeText && CONFIG.aboutMe) {
+    aboutMeText.textContent = CONFIG.aboutMe;
+  }
 
-  // Featured playlist from provided URL
-  const featuredId = isPlaceholderPlaylistUrl(CONFIG.featuredPlaylistUrl)
-    ? null
-    : extractPlaylistId(CONFIG.featuredPlaylistUrl);
-  setIframeSrc("featuredPlaylistPlayer", featuredId);
+  // Setup CTA links
+  if (!isPlaceholderChannelId(CONFIG.channelId)) {
+    setLink("subscribeCta", `https://www.youtube.com/channel/${CONFIG.channelId}?sub_confirmation=1`);
+  } else {
+    setLink("subscribeCta", "#");
+  }
 
   // Scroll reveal animations
   setupScrollReveal();

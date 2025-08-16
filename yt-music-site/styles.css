@@ -266,6 +266,14 @@ main {
   color: transparent;
 }
 
+.section-subtitle {
+  margin: 0 0 24px 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.5;
+  max-width: 600px;
+}
+
 .player-card {
   background: linear-gradient(145deg, rgba(18, 24, 36, 0.9), rgba(18, 24, 36, 0.75));
   border: 1px solid var(--border);
