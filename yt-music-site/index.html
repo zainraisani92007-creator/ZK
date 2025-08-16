@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Your Channel Name — Music</title>
     <meta name="description" content="Official music hub: latest songs, playlists, and more.">
+    <meta name="theme-color" content="#0b0f14">
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -45,11 +47,53 @@
     </header>
 
     <main>
-      <section id="latest" class="section">
+      <section class="hero" data-animate>
+        <div class="hero-bg" aria-hidden="true">
+          <svg class="waves" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#7c5cff" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#0ff1ce" stop-opacity="0.25"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#g1)" d="M0,160L48,149.3C96,139,192,117,288,122.7C384,128,480,160,576,181.3C672,203,768,213,864,213.3C960,213,1056,203,1152,176C1248,149,1344,107,1392,85.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"/>
+          </svg>
+        </div>
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <h2 class="hero-title"><span class="accent">Feel</span> the music<br>of <span id="heroChannelName">Your Channel Name</span></h2>
+            <p class="hero-sub">Original tracks, remixes, and curated playlists. Press play and vibe.</p>
+            <div class="cta-row">
+              <a id="subscribeCta" class="btn btn-primary" href="#" target="_blank" rel="noopener">Subscribe</a>
+              <a class="btn btn-ghost" href="#featured">Listen to Playlist</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="visual-card">
+              <div class="eq" aria-hidden="true">
+                <span style="--i:1"></span>
+                <span style="--i:2"></span>
+                <span style="--i:3"></span>
+                <span style="--i:4"></span>
+                <span style="--i:5"></span>
+                <span style="--i:6"></span>
+                <span style="--i:7"></span>
+                <span style="--i:8"></span>
+                <span style="--i:9"></span>
+                <span style="--i:10"></span>
+              </div>
+              <div class="visual-caption">Live Visualizer</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="latest" class="section" data-animate>
         <div class="container">
           <h2 class="section-title">Latest Uploads</h2>
           <div class="player-card">
             <div class="player-wrap">
+              <div class="skeleton" aria-hidden="true"></div>
               <iframe id="uploadsPlayer" title="Latest uploads"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -61,11 +105,12 @@
         </div>
       </section>
 
-      <section id="featured" class="section">
+      <section id="featured" class="section" data-animate>
         <div class="container">
           <h2 class="section-title">Featured Playlist</h2>
           <div class="player-card">
             <div class="player-wrap">
+              <div class="skeleton" aria-hidden="true"></div>
               <iframe id="featuredPlaylistPlayer" title="Featured playlist"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -77,7 +122,7 @@
         </div>
       </section>
 
-      <section id="about" class="section">
+      <section id="about" class="section" data-animate>
         <div class="container">
           <h2 class="section-title">About Me</h2>
           <p class="about-text">
@@ -87,7 +132,7 @@
         </div>
       </section>
 
-      <section id="connect" class="section">
+      <section id="connect" class="section" data-animate>
         <div class="container">
           <h2 class="section-title">Connect</h2>
           <div class="social-grid">
