@@ -307,15 +307,13 @@ main {
   animation: shimmer 1.2s linear infinite;
 }
 
-.player-wrap.is-loaded .skeleton {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .3s var(--ease), visibility .3s var(--ease);
+@keyframes shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+.player-wrap.is-loaded .skeleton {
+  display: none;
 }
 
 .about-text {

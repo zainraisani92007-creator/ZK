@@ -39,14 +39,32 @@ function setIframeSrc(iframeId, playlistId) {
     if (section) section.style.display = "none";
     return;
   }
+  
+  // Create the YouTube embed URL
   const src = `https://www.youtube-nocookie.com/embed/videoseries?modestbranding=1&rel=0&iv_load_policy=3&color=white&list=${encodeURIComponent(playlistId)}`;
-  iframe.src = src;
-  // Wire skeleton hide on load
+  
+  // Set up loading states
   if (wrap) {
-    const markLoaded = () => wrap.classList.add("is-loaded");
+    wrap.classList.remove("is-loaded");
+    
+    // Handle iframe load event
+    const markLoaded = () => {
+      wrap.classList.add("is-loaded");
+      if (wrap.querySelector(".skeleton")) {
+        wrap.querySelector(".skeleton").style.display = "none";
+      }
+    };
+    
+    // Remove any existing listeners
+    iframe.removeEventListener("load", markLoaded);
     iframe.addEventListener("load", markLoaded, { once: true });
-    setTimeout(markLoaded, 6000);
+    
+    // Fallback timeout to hide skeleton
+    setTimeout(markLoaded, 8000);
   }
+  
+  // Set the source
+  iframe.src = src;
 }
 
 function setLink(id, url) {
