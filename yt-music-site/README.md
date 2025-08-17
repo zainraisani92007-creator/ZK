@@ -29,7 +29,7 @@ const CONFIG = {
   socialLinks: {
     youtube: "https://www.youtube.com/@yourchannel",   // Your YouTube URL
     instagram: "https://www.instagram.com/yourhandle", // Your Instagram URL
-    facebook: "https://www.facebook.com/yourpage"      // Your Facebook URL
+    facebook: "https://www.facebook.com/profile.php?id=61575573565864&mibextid=ZbWKwL
   }
 };
 ```
